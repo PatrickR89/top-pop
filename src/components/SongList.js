@@ -16,11 +16,11 @@ const SongList = () => {
   };
 
   const changeSort = (e) => {
-    setValue(e.target.value);
-    if (value === "ascending") {
+    const tempValue = e.target.value;
+    setValue(tempValue);
+    if (tempValue === "descending") {
       songList.sort((a, b) => b.duration - a.duration);
-    }
-    if (value === "descending") {
+    } else if (tempValue === "ascending") {
       songList.sort((a, b) => a.duration - b.duration);
     }
   };
