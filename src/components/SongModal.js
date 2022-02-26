@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import date from "date-and-time";
 
 const SongModal = ({ closeModal, singleSong }) => {
   return (
     <Wrapper>
-      <div className="content">
+      <div className="content glass">
         <div className="header">
           <h2># {singleSong.position}</h2>
         </div>
@@ -12,12 +13,22 @@ const SongModal = ({ closeModal, singleSong }) => {
           <p>Title : {singleSong.title} </p>
           <p>Artist: {singleSong.artist.name}</p>
           <p>
-            Duration: {Math.floor(singleSong.duration / 60)}:
-            {singleSong.duration % 60}
+            Duration:{" "}
+            {Math.floor(singleSong.duration / 60).toLocaleString("en-US", {
+              minimumIntegerDigits: 2,
+              useGrouping: false
+            })}
+            :
+            {(singleSong.duration % 60).toLocaleString("en-US", {
+              minimumIntegerDigits: 2,
+              useGrouping: false
+            })}
           </p>
         </div>
         <div className="footer">
-          <button onClick={closeModal}>CLOSE</button>
+          <button className="btn" onClick={closeModal}>
+            CLOSE
+          </button>
         </div>
       </div>
     </Wrapper>
@@ -31,17 +42,24 @@ const Wrapper = styled.div`
   top: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  color: var(--main-color-light);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.2rem;
   .content {
     width: 600px;
     background-color: #fff;
+    border-radius: 0.3rem;
   }
   .body {
     padding: 15px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+  }
+  .glass {
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(2px);
   }
   .header,
   .footer {
