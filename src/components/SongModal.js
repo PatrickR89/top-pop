@@ -1,8 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import date from "date-and-time";
 
 const SongModal = ({ closeModal, singleSong }) => {
+  const min = Math.floor(singleSong.duration / 60).toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false
+  });
+
+  const sec = (singleSong.duration % 60).toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false
+  });
   return (
     <Wrapper>
       <div className="content glass">
@@ -13,16 +21,7 @@ const SongModal = ({ closeModal, singleSong }) => {
           <p>Title : {singleSong.title} </p>
           <p>Artist: {singleSong.artist.name}</p>
           <p>
-            Duration:{" "}
-            {Math.floor(singleSong.duration / 60).toLocaleString("en-US", {
-              minimumIntegerDigits: 2,
-              useGrouping: false
-            })}
-            :
-            {(singleSong.duration % 60).toLocaleString("en-US", {
-              minimumIntegerDigits: 2,
-              useGrouping: false
-            })}
+            Duration: {min}:{sec}
           </p>
         </div>
         <div className="footer">
